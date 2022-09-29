@@ -32,7 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Pholium.Application\Pholium.Application.csproj" />
     <ProjectReference Include="..\Pholium.Data\Pholium.Data.csproj" />
+    <ProjectReference Include="..\Pholium.IoC\Pholium.IoC.csproj" />
   </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

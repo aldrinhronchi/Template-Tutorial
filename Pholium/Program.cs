@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Pholium.Data.Context;
+using Pholium.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,8 +8,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<PholiumContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("PholiumDB")).EnableSensitiveDataLogging());
-var app = builder.Build();
 
+
+IServiceCollection services = builder.Services;
+NativeInjector.RegisterServices(services);
+
+
+
+var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
