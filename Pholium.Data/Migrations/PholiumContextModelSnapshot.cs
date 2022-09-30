@@ -28,9 +28,18 @@ namespace Pholium.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -45,7 +54,9 @@ namespace Pholium.Data.Migrations
                         new
                         {
                             ID = new Guid("b25fca61-2f00-472a-bcb0-b87e7080b255"),
+                            DateCreated = new DateTime(2022, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "userdefault@template.com",
+                            IsDeleted = false,
                             Name = "User Default"
                         });
                 });

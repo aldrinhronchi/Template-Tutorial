@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Pholium.Application\Pholium.Application.csproj" />
+    <ProjectReference Include="..\Pholium.Data\Pholium.Data.csproj" />
+    <ProjectReference Include="..\Pholium.Domain\Pholium.Domain.csproj" />
   </ItemGroup>
 
 </Project>

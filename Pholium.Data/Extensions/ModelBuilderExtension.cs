@@ -14,7 +14,7 @@ namespace Pholium.Data.Extensions
         {
             builder.Entity<User>()
                 .HasData(
-                    new User { ID = Guid.Parse("b25fca61-2f00-472a-bcb0-b87e7080b255"), Name = "User Default", Email = "userdefault@template.com" }
+                    new User { ID = Guid.Parse("b25fca61-2f00-472a-bcb0-b87e7080b255"), Name = "User Default", Email = "userdefault@template.com", DateCreated = new DateTime(2022,2,2), IsDeleted = false, DateUpdated = null }
                 );
             return builder;
         }

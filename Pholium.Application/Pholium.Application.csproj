@@ -10,4 +10,8 @@
     <Folder Include="ViewModels\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Pholium.Domain\Pholium.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

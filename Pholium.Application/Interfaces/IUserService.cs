@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pholium.Application.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace Pholium.Application.Interfaces
 {
     public interface IUserService
     {
-         void Test();
+         List<UserViewModel> Get();
     }
 }
