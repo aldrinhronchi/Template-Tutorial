@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using Pholium.Application.AutoMapper;
 using Pholium.Data.Context;
 using Pholium.IoC;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<PholiumContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("PholiumDB")).EnableSensitiveDataLogging());
-
+builder.Services.AddAutoMapper(typeof(AutoMapperSetup));
 
 IServiceCollection services = builder.Services;
 NativeInjector.RegisterServices(services);
