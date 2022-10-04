@@ -28,5 +28,17 @@ namespace Pholium.Application.Services
 
             return _userViewModels;
         }
-    }
+        public bool Post(UserViewModel userViewModel)
+        {
+            User _user = new User
+            {
+                ID = Guid.NewGuid(),
+                Name = userViewModel.Name,
+                Email = userViewModel.Email,
+            };
+            this.userRepository.Create(_user);
+
+            return true;
+        }
+    }   
 }

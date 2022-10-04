@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Pholium.Application.Interfaces;
+using Pholium.Application.ViewModels;
 
 namespace Pholium.Template.Controllers
 {
@@ -18,6 +19,12 @@ namespace Pholium.Template.Controllers
         public IActionResult Get()
         {
             return Ok(this.userService.Get());
+        }
+
+        [HttpPost]
+        public IActionResult Post(UserViewModel userViewModel)
+        {
+            return Ok(this.userService.Post(userViewModel));
         }
     }
 }
