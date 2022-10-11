@@ -37,6 +37,7 @@
     <ProjectReference Include="..\Pholium.Application\Pholium.Application.csproj" />
     <ProjectReference Include="..\Pholium.Data\Pholium.Data.csproj" />
     <ProjectReference Include="..\Pholium.IoC\Pholium.IoC.csproj" />
+    <ProjectReference Include="..\Pholium.Swagger\Pholium.Swagger.csproj" />
   </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

@@ -3,6 +3,7 @@ using Pholium.Application.AutoMapper;
 using Pholium.Data.Context;
 using Pholium.IoC;
 using AutoMapper;
+using Pholium.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<PholiumContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("PholiumDB")).EnableSensitiveDataLogging());
 builder.Services.AddAutoMapper(typeof(AutoMapperSetup));
+builder.Services.AddSwaggerConfiguration();
 
 IServiceCollection services = builder.Services;
 NativeInjector.RegisterServices(services);
@@ -28,6 +30,8 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+
+app.UseSwaggerConfigutarion();
 
 
 app.MapControllerRoute(
