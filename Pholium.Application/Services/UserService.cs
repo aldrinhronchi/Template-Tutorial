@@ -49,5 +49,30 @@ namespace Pholium.Application.Services
                 this.userRepository.Create(_user);
             return true;
         }
+        public UserViewModel GetById(String id)
+        {
+            if (!Guid.TryParse(id, out Guid userId))
+            {
+                throw new Exception("UserID is not valid!");
+            }
+            User _user = this.userRepository.Find(x => x.ID == userId & !x.IsDeleted);
+            if (_user == null)
+            {
+                throw new Exception("User not found");
+            }
+            return mapper.Map<UserViewModel>(_user);
+        }
+        public bool Put(UserViewModel userViewModel)
+        {
+            User _user = this.userRepository.Find(x => x.ID == userViewModel.ID & !x.IsDeleted);
+            if (_user == null)
+            {
+                throw new Exception("User not found");
+            }
+            mapper.Map(userViewModel, _user);
+
+            this.userRepository.Update(_user);
+            return true;
+        }
     }   
 }
