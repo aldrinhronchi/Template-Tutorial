@@ -6,6 +6,7 @@ using Pholium.Domain.Entities;
 using Pholium.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,23 +31,17 @@ namespace Pholium.Application.Services
 
             _userViewModels = mapper.Map<List<UserViewModel>>(_users);
 
-            //foreach (var item in _users)
-            //{
-            //    _userViewModels.Add(mapper.Map<UserViewModel>(item));
-            //_userViewModels.Add(new UserViewModel { ID = item.ID, Email = item.Email, Name = item.Name });
-            //}
-
             return _userViewModels;
         }
 
         public bool Post(UserViewModel userViewModel)
         {
-            //User _user = new User
-            //{
-            //    ID = Guid.NewGuid(),
-            //    Name = userViewModel.Name,
-            //    Email = userViewModel.Email,
-            //};
+            if (userViewModel.ID != Guid.Empty)
+            {
+                throw new Exception("UserID must be empty!");
+            }
+
+            Validator.ValidateObject(userViewModel, new ValidationContext(userViewModel), true);
 
             User _user = mapper.Map<User>(userViewModel);
 
@@ -70,6 +65,11 @@ namespace Pholium.Application.Services
 
         public bool Put(UserViewModel userViewModel)
         {
+            if (userViewModel.ID == Guid.Empty)
+            {
+                throw new Exception("ID is invalid");
+            }
+
             User _user = this.userRepository.Find(x => x.ID == userViewModel.ID & !x.IsDeleted);
             if (_user == null)
             {
@@ -97,6 +97,11 @@ namespace Pholium.Application.Services
 
         public UserAuthenticateResponseViewModel Authenticate(UserAuthenticateRequestViewModel user)
         {
+            if (string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Password))
+            {
+                throw new Exception("Email/Password are required.");
+            }
+
             User _user = this.userRepository.Find(x => !x.IsDeleted && x.Email.ToUpper() == user.Email.ToUpper());
             if (_user == null)
             {
