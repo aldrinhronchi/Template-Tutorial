@@ -35,6 +35,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Pholium.Application\Pholium.Application.csproj" />
+    <ProjectReference Include="..\Pholium.Auth\Pholium.Auth.csproj" />
     <ProjectReference Include="..\Pholium.Data\Pholium.Data.csproj" />
     <ProjectReference Include="..\Pholium.IoC\Pholium.IoC.csproj" />
     <ProjectReference Include="..\Pholium.Swagger\Pholium.Swagger.csproj" />
