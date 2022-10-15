@@ -94,5 +94,16 @@ namespace Pholium.Application.Tests.Services
         }
 
         #endregion ValidatingCorrectObject
+
+        #region ValidatingRequiredFields
+
+        [Fact]
+        public void Post_SendingInvalidObject()
+        {
+            var exception = Assert.Throws<ValidationException>(() => userService.Post(new UserViewModel { Name = "Nicolas Fontes" }));
+            Assert.Equal("The Email field is required.", exception.Message);
+        }
+
+        #endregion ValidatingRequiredFields
     }
 }

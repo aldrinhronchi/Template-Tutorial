@@ -16,6 +16,8 @@ namespace Pholium.Data.Mappings
             builder.Property(x => x.ID).IsRequired();
 
             builder.Property(x => x.Name).HasMaxLength(100).IsRequired();
+
+            builder.Property(x => x.Password).IsRequired().HasDefaultValue("TestePholium");
         }
     }
 }
