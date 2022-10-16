@@ -12,4 +12,9 @@ export class UserDataService {
   get() {
     return this.http.get(this.module);
   }
+  post(data:any)
+  {
+    return this.http.post(this.module, data);
+  }
+
 }
