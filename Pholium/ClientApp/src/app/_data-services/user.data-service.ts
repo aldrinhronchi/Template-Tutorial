@@ -18,5 +18,7 @@ export class UserDataService {
   put(data:any) {
     return this.http.put(this.module, data);
   }
-
+  delete(userID:any) {
+    return this.http.delete(this.module + userID);
+  }
 }

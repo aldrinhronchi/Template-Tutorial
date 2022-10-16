@@ -47,10 +47,10 @@ namespace Pholium.Template.Controllers
             return Ok(this.userService.Put(userViewModel));
         }
 
-        [HttpDelete, AllowAnonymous]
-        public IActionResult Delete()
+        [HttpDelete("{_userID}"), AllowAnonymous]
+        public IActionResult Delete(String _userID)
         {
-            String _userID = TokenService.GetValueFromClaim(HttpContext.User.Identity, ClaimTypes.NameIdentifier);
+           // String _userID = TokenService.GetValueFromClaim(HttpContext.User.Identity, ClaimTypes.NameIdentifier);
 
             return Ok(this.userService.Delete(_userID));
         }
