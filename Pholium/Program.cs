@@ -10,9 +10,18 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 // Add services to the container.
-
+builder.Services.AddCors(options =>
+                                    {
+                                        options.AddPolicy(name: MyAllowSpecificOrigins,
+                                                          policy =>
+                                                          {
+                                                              policy.WithOrigins("https://localhost:44437",
+                                                                                  "http://localhost:44437");
+                                                          });
+                                    });
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<PholiumContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("PholiumDB")).EnableSensitiveDataLogging());
 builder.Services.AddAutoMapper(typeof(AutoMapperSetup));
@@ -52,6 +61,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthentication();
 app.UseAuthorization();

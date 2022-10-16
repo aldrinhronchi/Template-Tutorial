@@ -5,7 +5,7 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class UserDataService {
 
-  module: string = 'https://localhost:7114/api/users';
+  module: string = 'https://localhost:7114/api/users/';
 
   constructor(private http: HttpClient) { }
 
