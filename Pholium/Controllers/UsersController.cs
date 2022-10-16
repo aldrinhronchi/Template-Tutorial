@@ -19,7 +19,7 @@ namespace Pholium.Template.Controllers
             this.userService = userService;
         }
 
-        [HttpGet]
+        [HttpGet, AllowAnonymous]
         public IActionResult Get()
         {
             return Ok(this.userService.Get());
@@ -41,16 +41,16 @@ namespace Pholium.Template.Controllers
             return Ok(this.userService.GetById(id));
         }
 
-        [HttpPut]
+        [HttpPut, AllowAnonymous]
         public IActionResult Put(UserViewModel userViewModel)
         {
             return Ok(this.userService.Put(userViewModel));
         }
 
-        [HttpDelete]
-        public IActionResult Delete()
+        [HttpDelete("{_userID}"), AllowAnonymous]
+        public IActionResult Delete(String _userID)
         {
-            String _userID = TokenService.GetValueFromClaim(HttpContext.User.Identity, ClaimTypes.NameIdentifier);
+           // String _userID = TokenService.GetValueFromClaim(HttpContext.User.Identity, ClaimTypes.NameIdentifier);
 
             return Ok(this.userService.Delete(_userID));
         }
