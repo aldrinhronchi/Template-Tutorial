@@ -12,7 +12,7 @@
   </thead>
   <tbody>
   <tr *ngFor="let user of users">
-    <th><button class="btn-primary">Editar</button></th>
+    <th><button class="btn-primary" (click)="openDetails(user)">Editar</button></th>
     <th scope="row">{{user.id}}</th>
     <td>{{user.name}}</td>
     <td>{{user.email}}</td>
@@ -35,6 +35,6 @@
       <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password" [(ngModel)]="user.password" name="password">
     </div>
 
-    <button type="submit" class="btn btn-primary" (click)="post()">Submit</button>
+    <button type="submit" class="btn btn-primary" (click)="save()">Submit</button>
   </form>
 </div>

@@ -41,13 +41,13 @@ namespace Pholium.Template.Controllers
             return Ok(this.userService.GetById(id));
         }
 
-        [HttpPut]
+        [HttpPut, AllowAnonymous]
         public IActionResult Put(UserViewModel userViewModel)
         {
             return Ok(this.userService.Put(userViewModel));
         }
 
-        [HttpDelete]
+        [HttpDelete, AllowAnonymous]
         public IActionResult Delete()
         {
             String _userID = TokenService.GetValueFromClaim(HttpContext.User.Identity, ClaimTypes.NameIdentifier);

@@ -32,11 +32,38 @@ export class UsersComponent implements OnInit {
       this.get();
       this.user = {};
     } else {
-      alert('erro ao Cadastrar Usuario no sistema');
+      alert('Erro ao Cadastrar Usuario no sistema');
     }
     }, error => {
       console.log(error);
       alert('erro interno do sistema');
     })
+  }
+  put() {
+    this.userDataService.put(this.user).subscribe(data => {
+      if (data) {
+        alert('Usuario Atualizado com sucesso');
+        this.get();
+        this.user = {};
+      } else {
+        alert('Erro ao Atualizar Usuario no sistema');
+      }
+    }, error => {
+      console.log(error);
+      alert('erro interno do sistema');
+    })
+  }
+  openDetails(user:any) {
+    console.log(user);
+    this.showList = false;
+    this.user = user;
+  }
+  save() {
+    debugger;
+  if (this.user.id) {
+    this.put();
+  } else {
+    this.post();
+  }
   }
 }
