@@ -10,11 +10,14 @@ export class UsersComponent implements OnInit {
 
   users: any[] = [];
   user: any = {};
+  userLogin: any = {};
+  userLogged: any = {};
   showList: boolean = true;
+  isAuthenticated: boolean = false;
   constructor(private userDataService: UserDataService) { }
 
   ngOnInit(): void {
-    this.get();
+
   }
   get() {
     this.userDataService.get().subscribe((data:any) => {
@@ -67,13 +70,30 @@ export class UsersComponent implements OnInit {
       alert('erro interno do sistema');
     })
   }
+  authenticate() {
+    this.userDataService.authenticate(this.userLogin).subscribe((data:any) => {
+    if (data.user){
+      localStorage.setItem('user_logged', JSON.stringify(data));
+      this.get();
+      this.getUserData();
+    } else {
+        alert('Erro ao Authenticar Usuario no sistema');
+      }
+    }, error => {
+      console.log(error);
+      alert('User Invalid');
+    })
+  }
+  getUserData() {
+    this.userLogged = JSON.parse(localStorage.getItem('user_logged') || '{}');
+    this.isAuthenticated = this.userLogged != null;
+  }
   openDetails(user:any) {
     console.log(user);
     this.showList = false;
     this.user = user;
   }
   save() {
-    debugger;
   if (this.user.id) {
     this.put();
   } else {

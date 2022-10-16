@@ -21,4 +21,7 @@ export class UserDataService {
   delete(userID:any) {
     return this.http.delete(this.module + userID);
   }
+  authenticate(data:any) {
+    return this.http.post(this.module + 'authenticate', data)
+  }
 }
